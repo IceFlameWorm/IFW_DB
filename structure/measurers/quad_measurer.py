@@ -41,7 +41,7 @@ class QuadMeasurer(Configurable):
                         pred.append(dict(points=pred_polygons[i,:,:].tolist()))
                 # pred = [dict(points=pred_polygons[i,:,:].tolist()) if pred_scores[i] >= box_thresh for i in range(pred_polygons.shape[0])]
             results.append(self.evaluator.evaluate_image(gt, pred))
-        return results
+        return results, pred
 
     def validate_measure(self, batch, output, is_output_polygon=False, box_thresh=0.6):
         return self.measure(batch, output, is_output_polygon, box_thresh)
