@@ -30,8 +30,8 @@ define:
         data_loader: 
             class: DataLoader
             dataset: ^train_data
-            batch_size: 16
-            num_workers: 8
+            batch_size: 12
+            num_workers: 4
         checkpoint: 
             class: Checkpoint
             start_epoch: 0
@@ -40,7 +40,7 @@ define:
         model_saver: 
             class: ModelSaver
             dir_path: model
-            save_interval: 2000
+            save_interval: 3000
             signal_path: save
         scheduler: 
             class: OptimizerScheduler
@@ -51,8 +51,8 @@ define:
                 weight_decay: 0.0001
             learning_rate:  
                 class: DecayLearningRate
-                epochs: 5
-        epochs: 5
+                epochs: 1000
+        epochs: 1000
 
     validation: &validate
         class: ValidationSettings
@@ -65,13 +65,13 @@ define:
                 collect_fn:
                     class: ICDARCollectFN
         visualize: false
-        interval: 4500
+        interval: 3000
         exempt: 1
 
     logger:
         class: Logger
         verbose: true
         level: info
-        log_interval: 5
+        log_interval: 100
 
     evaluation: *validate
